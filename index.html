@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CATMOUSE | OPT-OUT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700&display=swap');
+
+        :root {
+            --bg: #ffffff;
+            --fg: #000000;
+            --code-bg: #f4f4f4;
+            --border-color: #000000;
+        }
+
+        body.dark-mode {
+            --bg: #000000;
+            --fg: #ffffff;
+            --code-bg: #1a1a1a;
+            --border-color: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        pre,
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            border-radius: 0 !important;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: var(--fg);
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .border-sharp {
+            border: 1px solid var(--border-color);
+            transition: border-color 0.3s;
+        }
+
+        /* Sidebar Links */
+        .sidebar-link {
+            display: block;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: var(--fg);
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .sidebar-link:hover {
+            border-bottom: 1px solid var(--fg);
+        }
+
+        /* Tables */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
+            text-align: left;
+            transition: border-color 0.3s;
+        }
+
+        th {
+            background-color: var(--fg);
+            color: var(--bg);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Headers & Footer Border */
+        h1,
+        h2,
+        h3,
+        h4,
+        footer {
+            border-color: var(--border-color);
+            transition: border-color 0.3s;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Theme Toggling Logic */
+        #logo-dark,
+        #sun-icon {
+            display: none;
+        }
+
+        #logo-light,
+        #moon-icon {
+            display: block;
+        }
+
+        body.dark-mode #logo-dark {
+            display: block;
+        }
+
+        body.dark-mode #logo-light {
+            display: none;
+        }
+
+        body.dark-mode #sun-icon {
+            display: block;
+        }
+
+        body.dark-mode #moon-icon {
+            display: none;
+        }
+
+        /* Invert the black tag in dark mode */
+        body.dark-mode .bg-black {
+            background-color: #ffffff;
+            color: #000000;
+        }
+    </style>
+</head>
+
+<body class="p-6 md:p-12">
+
+    <header class="mb-16 border-b-4 pb-8 border-[var(--border-color)]">
+        <div class="flex justify-between items-center mb-8 flex-wrap gap-8">
+
+            <div class="flex items-center gap-8">
+                <div class="w-24 h-24 relative flex-shrink-0">
+                    <img src="../images/LOGO_LIGHT.png" id="logo-light"
+                        class="absolute inset-0 w-full h-full object-contain" alt="Light Logo">
+                    <img src="../images/LOGO_DARK.png" id="logo-dark"
+                        class="absolute inset-0 w-full h-full object-contain" alt="Dark Logo">
+                </div>
+                <h1 class="text-6xl md:text-8xl leading-none">CATMOUSE</h1>
+            </div>
+
+            <div class="text-right flex flex-col items-end gap-6">
+                <button id="theme-toggle"
+                    class="focus:outline-none p-2 border-sharp hover:bg-[var(--fg)] hover:text-[var(--bg)] transition-colors cursor-pointer">
+                    <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                    </svg>
+                    <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+                <div>
+                    <p class="font-bold text-xl uppercase tracking-tighter">OPT-OUT</p>
+                    <p class="text-xs uppercase tracking-widest opacity-60">Brussels 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-xl uppercase tracking-widest">Resilient Asymmetric Channel Hopping Protocol</p>
+        <div class="mt-8 flex flex-wrap gap-4 text-sm font-bold uppercase">
+            <span class="border-sharp px-4 py-1">Build v1.1.0</span>
+            <span class="border-sharp px-4 py-1 bg-black text-white transition-colors">Auto-Discovery</span>
+            <span class="border-sharp px-4 py-1">Dynamic Stamina</span>
+        </div>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+
+        <aside class="md:col-span-1">
+            <nav class="sticky top-12 space-y-4 uppercase text-xs font-bold tracking-tighter">
+                <a href="#download" class="sidebar-link">00. Download - Install</a>
+                <a href="#logic" class="sidebar-link">01. Architecture</a>
+                <a href="#methods" class="sidebar-link">02. API Reference</a>
+                <a href="#callbacks" class="sidebar-link">03. Event Callbacks</a>
+                <a href="#quickstart" class="sidebar-link">04. Implementation</a>
+            </nav>
+        </aside>
+
+        <main class="md:col-span-3 space-y-24">
+
+            <section id="download">
+                <h2 class="text-3xl mb-6">00. Download - Install</h2>
+                <div class="border-sharp p-8 bg-[var(--code-bg)]">
+                    <p class="mb-4 text-sm font-bold uppercase tracking-widest">ESP32 Hardware Compatibility:</p>
+                    <ul class="list-disc list-inside mb-8 text-sm opacity-90 space-y-2">
+                        <li><strong>100% Variant Agnostic:</strong> Uses low-level ESP-IDF `soc` macro checks to safely
+                            lock and manipulate the Physical Layer (PHY) across the ESP32, ESP32-S2, ESP32-S3, ESP32-C3,
+                            and ESP32-C6 without crashing native hardware controllers.</li>
+                    </ul>
+                    <p class="mb-4 text-sm font-bold uppercase tracking-widest">Get the latest release directly from
+                        GitHub:</p>
+                    <a href="https://github.com/0P7-0U7/CATMOUSE/releases/latest" target="_blank"
+                        class="inline-block border-sharp px-6 py-3 bg-[var(--fg)] text-[var(--bg)] font-bold uppercase hover:bg-transparent hover:text-[var(--fg)] transition-colors">
+                        Download Last Release
+                    </a>
+                    <p class="mt-6 text-sm opacity-70">Install via the Arduino IDE Library Manager (Sketch > Include
+                        Library > Add .ZIP Library).</p>
+                </div>
+            </section>
+
+            <section id="logic">
+                <h2 class="text-3xl mb-6">01. Architecture</h2>
+                <p class="mb-6 max-w-2xl">
+                    CATMOUSE was conceived as an experimental game of wireless hide-and-seek, but results in an
+                    incredibly resilient, zero-configuration networking strategy that actively circumvents external
+                    radio jamming by utilizing the entirety of the 2.4Ghz physical spectrum dynamically.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-0 border-sharp">
+                    <div class="p-8 border-b sm:border-b-0 sm:border-r border-[var(--border-color)]">
+                        <h3 class="text-lg mb-2">The CAT (Hunter)</h3>
+                        <p class="text-sm">Boots in LISTENING mode, actively scanning all 13 channels until it catches
+                            a Mouse's Squeak. Once locked on, it initiates aggressive sweeping by firing
+                            targeted payloads bearing its <code>gameID</code>, leveraging hardware ACKs.
+                            <br><br><b>Stamina:</b> A Cat's sweep rate slows down the longer it misses (saving power and
+                            minimizing airwave congestion). When it scores a Hit, it enters a 5ms interval "Frenzy,"
+                            launching hyper-aggressive strikes before the Mouse flies to a new frequency.
+                        </p>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-lg mb-2">The MOUSE (Hider)</h3>
+                        <p class="text-sm">A passive hider. It randomly selects a Wi-Fi channel and a hiding duration.
+                            If it receives a packet from a Cat bearing the correct <code>gameID</code>, it triggers a
+                            'HIT' callback and immediately flees to a new random channel.<br><br><b>The Squeak:</b> The
+                            Mouse occasionally unleashes a public broadcast Squeak on its active channel. Cats in
+                            LISTENING mode can catch this Squeak, seamlessly locking onto the Mouse's MAC address
+                            without hardcoding.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="methods">
+                <h2 class="text-3xl mb-6">02. API Reference</h2>
+                <div class="space-y-6">
+                    <div class="border-sharp p-6">
+                        <code
+                            class="block text-lg font-bold break-words">bool beginAsCat(uint8_t gameID, uint8_t* targetMac = nullptr, unsigned long attackRateMs = 10)</code>
+                        <p class="text-sm mt-2 opacity-70">Initializes the device as the Hunter on a specific
+                            <code>gameID</code>. If you leave <code>targetMac</code> as a <code>nullptr</code>, the Cat
+                            enters LISTENING mode and actively scans channels until it catches a Mouse Squeak to automatically determine the MAC
+                            target. Returns <code>false</code> if ESP-NOW initialization fails.
+                        </p>
+                    </div>
+                    <div class="border-sharp p-6">
+                        <code
+                            class="block text-lg font-bold break-words">bool beginAsMouse(uint8_t gameID, unsigned long hideMinMs = 100, unsigned long hideMaxMs = 500, unsigned long squeakIntervalMs = 2000)</code>
+                        <p class="text-sm mt-2 opacity-70">Initializes the device as the Target locking into a
+                            <code>gameID</code>. Configures the min/max window for autonomous channel hopping and the
+                            Squeak broadcast interval. Returns <code>false</code> if ESP-NOW initialization fails.
+                        </p>
+                    </div>
+                    <div class="border-sharp p-6">
+                        <code class="block text-lg font-bold">void end()</code>
+                        <p class="text-sm mt-2 opacity-70">Tears down ESP-NOW, unregisters all callbacks, and resets
+                            the internal state. Call this to cleanly stop the protocol before re-initializing or shutting down.</p>
+                    </div>
+                    <div class="border-sharp p-6">
+                        <code class="block text-lg font-bold">void update()</code>
+                        <p class="text-sm mt-2 opacity-70">The main timer engine. Analyzes state changes, updates
+                            stamina, triggers Squeaks, schedules transmits, and manages hops. Must run in loop().</p>
+                    </div>
+                    <div class="border-sharp p-6">
+                        <code class="block text-lg font-bold">uint32_t getHitsScored()</code>
+                        <p class="text-sm mt-2 opacity-70">Returns the internal telemetry. If Cat: successful Hits
+                            tracked. If Mouse: successful escapes.</p>
+                    </div>
+                    <div class="border-sharp p-6">
+                        <code class="block text-lg font-bold">uint32_t getSweepsMissed()</code>
+                        <p class="text-sm mt-2 opacity-70">Returns the number of channels the Cat has swept without
+                            securing an ACK. Useful for monitoring hunt efficiency.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="callbacks">
+                <h2 class="text-3xl mb-6">03. Event Callbacks</h2>
+                <div class="space-y-6">
+                    <div class="border-sharp p-6">
+                        <code class="block text-lg font-bold">void onHit(HitCallback cb)</code>
+                        <p class="text-sm mt-2 opacity-70">Registers an external function to trigger when contact is
+                            made. If assigned to the Cat, it fires when the target is found. If assigned to the Mouse,
+                            it fires when it is caught. The callback brings the <code>uint8_t channel</code> int with
+                            it.</p>
+                    </div>
+                    <div class="border-sharp p-6">
+                        <code class="block text-lg font-bold">void onMiss(MissCallback cb)</code>
+                        <p class="text-sm mt-2 opacity-70">Registers an external function to trigger when a payload
+                            fails to secure an ACK (meaning the target is not on the current channel). The callback
+                            brings the <code>uint8_t channel</code> int with it.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quickstart">
+                <h2 class="text-3xl mb-6">04. Implementation</h2>
+
+                <div class="grid grid-cols-1 gap-12">
+                    <div>
+                        <h3 class="text-lg mb-4 font-bold border-l-4 border-[var(--border-color)] pl-4">Example: The Cat
+                            (Listener)</h3>
+                        <pre><code>#include &lt;CatMouse.h&gt;
+
+CatMouse cat;
+
+// Define your Game ID. Cats will only hunt Mice with matching IDs.
+const uint8_t gameID = 42;
+
+void onCatHit(uint8_t channel) {
+  Serial.printf("HIT! Found Mouse on Channel: %d | Hits Scored: %d\n", channel,
+                cat.getHitsScored());
+}
+
+void onCatMiss(uint8_t channel) {
+  Serial.printf("Miss... Sweeping Channel: %d | Sweeps: %d\n", channel,
+                cat.getSweepsMissed());
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  // Initialize as CAT using just the Game ID (no MAC address)
+  // The Cat will boot in LISTENING mode, scanning channels until it hears a Squeak
+  if (!cat.beginAsCat(gameID, nullptr, 10)) {
+    Serial.println("Failed to initialize Cat! Check ESP-NOW.");
+    while (true) delay(1000);
+  }
+
+  // Register the result callbacks
+  cat.onHit(onCatHit);
+  cat.onMiss(onCatMiss);
+
+  Serial.println("Cat is scanning channels, listening for the first Mouse squeak...");
+}
+
+void loop() {
+  // Calling update() triggers listening, and eventually sweeps &amp; stamina logic
+  cat.update();
+}</code></pre>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg mb-4 font-bold border-l-4 border-[var(--border-color)] pl-4">Example: The
+                            Mouse (Hider)</h3>
+                        <pre><code>#include &lt;CatMouse.h&gt;
+
+CatMouse mouse;
+
+// Define your Game ID. The Mouse will only respond to Cats with this ID.
+const uint8_t gameID = 42;
+
+// Runs when the Cat finds the Mouse on the current channel
+void onMouseCaught(uint8_t channel) {
+  Serial.printf("CAUGHT! The Cat found me on Channel: %d ! Fleeing...\n",
+                channel);
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  // Initialize as MOUSE with the Game ID.
+  // It will hide on a random channel for anywhere between 100ms and 500ms
+  // Squeaks every 2000ms (default) to let Cats discover it
+  if (!mouse.beginAsMouse(gameID, 100, 500)) {
+    Serial.println("Failed to initialize Mouse! Check ESP-NOW.");
+    while (true) delay(1000);
+  }
+
+  // Register the callback for when the Cat scores a direct hit
+  mouse.onHit(onMouseCaught);
+
+  Serial.println("Mouse is hiding and occasionally squeaking...");
+}
+
+void loop() {
+  // Calling update() automatically triggers hops and periodic Squeak broadcasts
+  mouse.update();
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer
+        class="mt-32 pt-12 border-t border-[var(--border-color)] text-xs uppercase font-bold tracking-widest flex justify-between">
+        <span>CATMOUSE HARDWARE PROTOCOL</span>
+        <span>OPT-OUT / BRUSSELS 2026</span>
+    </footer>
+
+    <script>
+        // Theme Toggling Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const bodyElement = document.body;
+
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            bodyElement.classList.add('dark-mode');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            bodyElement.classList.toggle('dark-mode');
+            if (bodyElement.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

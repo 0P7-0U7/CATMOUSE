@@ -1,0 +1,14 @@
+# Classes (Usually color coded Orange)
+CatMouse	KEYWORD1
+
+# Methods and Functions (Usually color coded Brown)
+beginAsCat	KEYWORD2
+beginAsMouse	KEYWORD2
+end	KEYWORD2
+update	KEYWORD2
+getChannel	KEYWORD2
+getHitsScored	KEYWORD2
+getSweepsMissed	KEYWORD2
+onHit	KEYWORD2
+onMiss	KEYWORD2
+broadcastSqueak	KEYWORD2
