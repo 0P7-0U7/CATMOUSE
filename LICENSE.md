@@ -1,4 +1,7 @@
-
+CATMOUSE LICENSE AND ATTRIBUTION:
+This project (CATMOUSE) utilizes ESP-NOW and the ESP-IDF framework, which are 
+licensed under the Apache License 2.0 by Espressif Systems. The original 
+permissions of those components are preserved. 
 
 All unique code, logic, and protocol implementations in the CATMOUSE library 
 are licensed under the Cooperative Non-Violent Public License (CNPL) v4 below.
